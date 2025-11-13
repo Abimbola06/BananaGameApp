@@ -1,0 +1,5 @@
+# Ignore build files and IDE folders
+/bin/
+/out/
+.idea/
+*.class
