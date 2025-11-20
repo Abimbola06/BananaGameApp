@@ -69,7 +69,7 @@ Connects to the Banana API at:
 https://marcconrad.com/uob/banana/api.php
 
 
-Demonstrates how Java communicates with an external web API using HTTP requests and JSON parsing.
+Demonstrates how server communicates with an external web API using HTTP requests and JSON parsing.
 
 
 
