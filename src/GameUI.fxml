@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Pos?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GameUIController">
+            fx:controller="GameUIController"
+            fx:id="rootPane">
 
     <top>
         <Label fx:id="welcomeLabel"
@@ -17,10 +19,18 @@
     </top>
 
     <center>
-        <VBox spacing="10" alignment="CENTER">
-            <Label text="Click the button to fetch a Banana quiz question (JSON):" />
-            <Button text="Fetch Question" onAction="#onFetchQuestion" />
-            <TextArea fx:id="resultArea" prefRowCount="10" wrapText="true" />
+        <VBox spacing="10" alignment="CENTER" >
+            <ImageView fx:id="questionImageView"
+                       preserveRatio="true" />
+            <HBox spacing="5" alignment="CENTER">
+                <Label text="Your answer:" />
+                <TextField fx:id="answerField" prefWidth="80" maxWidth="Infinity" />
+                <Button text="Submit" onAction="#onSubmitAnswer" />
+            </HBox>
+            <Label fx:id="statusLabel" />
+            <Button fx:id="nextQuestionButton"
+                    text="Next Question"
+                    onAction="#onNextQuestion" />
         </VBox>
     </center>
 

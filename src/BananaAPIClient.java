@@ -20,7 +20,7 @@ public class BananaAPIClient {
     /**
      * Fetches a quiz question from the Banana API and prints the response.
      */
-    public String fetchQuestion() {
+    public BananaQuestion fetchQuestion() {
         try {
             URI uri = URI.create(API_URL);
             URL url = uri.toURL();
@@ -39,10 +39,18 @@ public class BananaAPIClient {
             }
 
             reader.close();
-            return response.toString();
+            String json = response.toString().trim();
+
+            String imageUrl = json.split("\"question\"\\s*:\\s*\"")[1].split("\"")[0];
+            String solutionPart = json.split("\"solution\"\\s*:\\s*")[1]
+                    .replaceAll("[^0-9-]", ""); // keep digits (and minus just in case)
+            int solution = Integer.parseInt(solutionPart);
+
+            return new BananaQuestion(imageUrl, solution);
 
         } catch (Exception e) {
-            return "Error connecting to Banana API: " + e.getMessage();  // ← IMPORTANT
+            e.printStackTrace();
+            return null;
         }
     }
 }
