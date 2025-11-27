@@ -1,17 +1,16 @@
 // Connects to Banana API (interoperability)
-
-import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.net.URL;
 
 /**
  * Handles interoperability by connecting to the Banana API.
  * This demonstrates how the application communicates with an
  * external web service to retrieve quiz questions.
- *
- * API Endpoint: https://marcconrad.com/uob/banana/api.php
+ * <p>
+ * API Endpoint: <a href="https://marcconrad.com/uob/banana/api.php">...</a>
  */
 public class BananaAPIClient {
 
@@ -21,36 +20,29 @@ public class BananaAPIClient {
     /**
      * Fetches a quiz question from the Banana API and prints the response.
      */
-    public void fetchQuestion() {
-        HttpClient client = HttpClient.newHttpClient();
-
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(API_URL))
-                .GET()
-                .build();
-
+    public String fetchQuestion() {
         try {
-            // Send the HTTP request and get the response
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            URI uri = URI.create(API_URL);
+            URL url = uri.toURL();
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
 
-            if (response.statusCode() == 200) {
-                System.out.println("Successfully fetched question from Banana API!");
-                System.out.println("Response Body:");
-                System.out.println(response.body());
-            } else {
-                System.out.println("Failed to fetch question. HTTP Status: " + response.statusCode());
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream())
+            );
+
+            String line;
+            StringBuilder response = new StringBuilder();
+
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
             }
 
-        } catch (IOException | InterruptedException e) {
-            System.out.println("Error connecting to Banana API: " + e.getMessage());
-        }
-    }
+            reader.close();
+            return response.toString();
 
-    /**
-     * A simple test method to demonstrate interoperability.
-     */
-    public static void main(String[] args) {
-        BananaAPIClient apiClient = new BananaAPIClient();
-        apiClient.fetchQuestion();
+        } catch (Exception e) {
+            return "Error connecting to Banana API: " + e.getMessage();  // ← IMPORTANT
+        }
     }
 }

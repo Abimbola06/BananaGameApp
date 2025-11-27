@@ -1,6 +1,24 @@
-// Main entry point
-public class Main {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+
+public class Main extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root, 400, 300);
+        primaryStage.setTitle("Banana Game - Login");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
     public static void main(String[] args) {
-        System.out.println("Java OK");
+        launch(args);
     }
 }
