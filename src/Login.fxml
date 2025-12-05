@@ -1,24 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Pos?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="LoginController"
-      alignment="CENTER" spacing="10">
-    <children>
-        <Label text="Banana Game Login" style="-fx-font-size: 18;" />
-        <Label text="Username:" />
-        <TextField fx:id="usernameField" promptText="Enter username" />
-        <Label text="Password:" />
-        <PasswordField fx:id="passwordField" promptText="Enter password" />
-        <Button text="Login" onAction="#onLogin" />
-        <Label fx:id="messageLabel" textFill="red" />
-    </children>
+      alignment="CENTER"
+      spacing="15">
+
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20" />
+        <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
+
+    <Label text="Banana Game Login"
+           style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+
+    <Label text="Username:"/>
+    <TextField fx:id="usernameField"
+               promptText="Enter username"
+               prefWidth="250"/>
+
+    <Label text="Password:"/>
+    <PasswordField fx:id="passwordField"
+                   promptText="Enter password"
+                   prefWidth="250"/>
+
+    <HBox spacing="25" alignment="CENTER">
+        <Button text="Login"
+                onAction="#onLogin"
+                style="-fx-padding: 6 18;"/>
+        <Button text="Sign Up"
+                onAction="#onSignup"
+                style="-fx-padding: 6 18;"/>
+    </HBox>
+
+    <Label fx:id="messageLabel" textFill="red"/>
+
 </VBox>

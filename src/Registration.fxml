@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="RegistrationController"
+      alignment="CENTER" spacing="10">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Label text="Create Account" style="-fx-font-size: 18;"/>
+
+    <Label text="Username:"/>
+    <TextField fx:id="usernameField" promptText="Choose a username"/>
+
+    <Label text="Password:"/>
+    <PasswordField fx:id="passwordField" promptText="Choose a password"/>
+
+    <Label text="Confirm Password:"/>
+    <PasswordField fx:id="confirmPasswordField" promptText="Re-enter password"/>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Finish" onAction="#onFinish"/>
+        <Button text="Back to Login" onAction="#onBackToLogin"/>
+    </HBox>
+
+    <Label fx:id="messageLabel" textFill="red"/>
+</VBox>

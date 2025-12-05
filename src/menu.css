@@ -1,0 +1,16 @@
+.menu-item {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 8 12;
+    -fx-background-radius: 4;
+}
+
+.menu-item:hover {
+    -fx-background-color: #3b4a5a;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+}
+
+.menu-item:pressed {
+    -fx-background-color: #2c3e50;
+}

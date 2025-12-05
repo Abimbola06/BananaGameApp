@@ -4,37 +4,99 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Pos?>
+<?import java.lang.String?>
+<?import java.net.URL?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="GameUIController"
             fx:id="rootPane">
 
+    <stylesheets>
+        <URL value="@menu.css"/>
+    </stylesheets>
+
     <top>
-        <Label fx:id="welcomeLabel"
-               text="Welcome!"
-               BorderPane.alignment="CENTER"
-               style="-fx-font-size: 16; -fx-padding: 10;" />
+        <BorderPane>
+            <center>
+                <Label fx:id="welcomeLabel"
+                       text="Welcome!"
+                       style="-fx-font-size: 24px; -fx-font-weight: bold;"
+                       BorderPane.alignment="CENTER"/>
+            </center>
+
+            <right>
+                <VBox alignment="TOP_RIGHT" spacing="5">
+                    <Button fx:id="menuButton"
+                            text="☰"
+                            onAction="#onMenuClicked"
+                            style="-fx-font-size: 18; -fx-background-radius: 50%; -fx-padding: 4;" />
+
+                    <VBox fx:id="menuPanel"
+                          visible="false"
+                          managed="false"
+                          spacing="5"
+                          style="-fx-background-color: #2c3e50;
+                                 -fx-padding: 10;
+                                 -fx-background-radius: 6;
+                                 -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 2);">
+
+                        <Button text="View Progress"
+                                onAction="#onViewProgress"
+                                style="-fx-background-color: transparent;
+                                       -fx-text-fill: white;
+                                       -fx-alignment: CENTER_LEFT;">
+                            <styleClass>
+                                <String fx:value="menu-item"/>
+                            </styleClass>
+                        </Button>
+
+                        <Button text="Logout"
+                                onAction="#onLogout"
+                                style="-fx-background-color: transparent;
+                                       -fx-text-fill: white;
+                                       -fx-alignment: CENTER_LEFT;">
+                            <styleClass>
+                                <String fx:value="menu-item"/>
+                            </styleClass>
+                        </Button>
+                    </VBox>
+                </VBox>
+            </right>
+        </BorderPane>
     </top>
 
     <center>
-        <VBox spacing="10" alignment="CENTER" >
+        <VBox spacing="20" alignment="CENTER">
             <ImageView fx:id="questionImageView"
-                       preserveRatio="true" />
-            <HBox spacing="5" alignment="CENTER">
-                <Label text="Your answer:" />
-                <TextField fx:id="answerField" prefWidth="80" maxWidth="Infinity" />
-                <Button text="Submit" onAction="#onSubmitAnswer" />
+                       preserveRatio="true">
+                <VBox.margin>
+                    <Insets bottom="20"/>
+                </VBox.margin>
+            </ImageView>
+
+            <HBox spacing="40" alignment="CENTER">
+                <Label text="Your answer:"
+                       style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <TextField fx:id="answerField"
+                           prefWidth="100"/>
+                <Button text="Submit"
+                        onAction="#onSubmitAnswer"
+                        style="-fx-padding: 6 14;"/>
             </HBox>
-            <Label fx:id="statusLabel" />
+
+            <Label fx:id="statusLabel"
+                   style="-fx-padding: 10 0 0 0;"/>
+
             <Button fx:id="nextQuestionButton"
                     text="Next Question"
-                    onAction="#onNextQuestion" />
+                    onAction="#onNextQuestion"
+                    style="-fx-padding: 12 16;"/>
         </VBox>
     </center>
 
     <padding>
-        <Insets top="10" right="10" bottom="10" left="10" />
+        <Insets top="15" right="15" bottom="15" left="15"/>
     </padding>
+
 </BorderPane>
